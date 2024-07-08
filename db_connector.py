@@ -72,3 +72,33 @@ def fetch_all_users():
             print(user)
     except mysql.connector.Error as err:
         print(f"Error: {err}")
+
+def add_author(name, nationality):
+    try:
+        sql = "INSERT INTO authors (name, nationality) VALUES (%s, %s)"
+        val = (name, nationality)
+        db_cursor.execute(sql, val)
+        db_connection.commit()
+        print("Author added successfully.")
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+
+def fetch_all_authors():
+    try:
+        db_cursor.execute("SELECT * FROM authors")
+        authors = db_cursor.fetchall()
+        for author in authors:
+            print(author)
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+
+def search_authors_by_name(name):
+    try:
+        sql = "SELECT * FROM authors WHERE name LIKE %s"
+        val = ('%' + name + '%',)
+        db_cursor.execute(sql, val)
+        authors = db_cursor.fetchall()
+        for author in authors:
+            print(author)
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
