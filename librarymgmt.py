@@ -6,14 +6,16 @@ def main_menu():
         print("1. Book Operations")
         print("2. User Operations")
         print("3. Author Operations")
-        print("3. Quit")
+        print("4. Quit")
         choice = input("Enter your choice: ")
         if choice == '1':
             book_operations_menu()
         elif choice == '2':
             user_operations_menu()
         elif choice == '3':
-            print("Exiting...")
+            author_operations_menu()
+        elif choice == '4':
+            print("exiting... ")
             break
         else:
             print("Invalid choice. Please try again.")
@@ -64,6 +66,26 @@ def user_operations_menu():
         else:
             print("Invalid choice. Please try again.")
 
+def author_operations_menu():
+    while True:
+        print("\nAuthor Operations")
+        print("1. Add Author")
+        print("2. View Authors")
+        print("3. Search For an Author")
+        print("4. Back to menu")
+        choice = input("Enter your choice: ")
+        if choice == '1':
+            name = input("Enter the author's name: ")
+            nationality = input("Enter their nationality: ")
+            add_author(name, nationality)
+        elif choice == '2':
+            fetch_all_authors()
+        elif choice == '3':
+            search_authors_by_name()
+        elif choice == '4':
+            break
+        else:
+            print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     try:
